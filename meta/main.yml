@@ -1,0 +1,35 @@
+---
+galaxy_info:
+  author: matus-cuper
+  role_name: kafka_ui
+  description: Ansible role installing Kafka UI for Linux
+  company: trivia data, s.r.o.
+
+  license: BSD
+
+  min_ansible_version: "2.0"
+
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+        - 9
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+        - bullseye
+    - name: Ubuntu
+      versions:
+        - bionic
+        - focal
+        - jammy
+
+  galaxy_tags:
+    - kafka
+    - kafka-ui
+    - monitoring
+    - system
+
+dependencies: []

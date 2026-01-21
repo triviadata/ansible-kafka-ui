@@ -1,0 +1,14 @@
+---
+- name: Create kafka-ui group
+  group:
+    name: "{{ kafka_ui_group }}"
+    state: present
+
+- name: Create kafka-ui user
+  user:
+    name: "{{ kafka_ui_user }}"
+    group: "{{ kafka_ui_group }}"
+    shell: /bin/false
+    home: "{{ kafka_ui_install_dir }}"
+    create_home: no
+    system: yes

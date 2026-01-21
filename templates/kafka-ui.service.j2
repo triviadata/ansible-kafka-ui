@@ -1,0 +1,15 @@
+[Unit]
+Description=Kafka UI
+After=network.target
+
+[Service]
+Type=simple
+User={{ kafka_ui_user }}
+Group={{ kafka_ui_group }}
+Environment="JAVA_OPTS={{ kafka_ui_java_opts }}"
+ExecStart=/usr/bin/java $JAVA_OPTS -jar {{ kafka_ui_install_dir }}/kafka-ui.jar --spring.config.additional-location={{ kafka_ui_config_dir }}/application.yml
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

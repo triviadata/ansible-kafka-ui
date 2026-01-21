@@ -1,0 +1,32 @@
+---
+- name: Create kafka-ui directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ kafka_ui_user }}"
+    group: "{{ kafka_ui_group }}"
+    mode: '0755'
+  loop:
+    - "{{ kafka_ui_install_dir }}"
+    - "{{ kafka_ui_config_dir }}"
+    - "{{ kafka_ui_log_dir }}"
+
+- name: Download kafka-ui jar
+  get_url:
+    url: "{{ kafka_ui_download_url }}"
+    dest: "{{ kafka_ui_install_dir }}/kafka-ui.jar"
+    owner: "{{ kafka_ui_user }}"
+    group: "{{ kafka_ui_group }}"
+    mode: '0644'
+  notify: Restart kafka-ui
+
+- name: Create kafka-ui systemd service
+  template:
+    src: kafka-ui.service.j2
+    dest: /etc/systemd/system/kafka-ui.service
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - Reload systemd
+    - Restart kafka-ui

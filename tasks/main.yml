@@ -1,0 +1,9 @@
+---
+- name: Create kafka-ui user and group
+  include_tasks: user.yml
+
+- name: Install kafka-ui
+  include_tasks: install.yml
+
+- name: Configure kafka-ui
+  include_tasks: configure.yml
