@@ -8,15 +8,6 @@
     mode: '0644'
   notify: Restart kafka-ui
 
-- name: Setup kafka-ui logging configuration file
-  ansible.builtin.template:
-    src: log4j2.xml.j2
-    dest: "{{ kafka_ui_config_dir }}/log4j2.xml"
-    owner: "{{ kafka_ui_user }}"
-    group: "{{ kafka_ui_group }}"
-    mode: "0644"
-  notify: Restart kafka-ui
-
 - name: Enable and start kafka-ui service
   systemd:
     name: kafka-ui
