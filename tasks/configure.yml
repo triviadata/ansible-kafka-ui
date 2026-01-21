@@ -1,6 +1,6 @@
 ---
 - name: Configure kafka-ui
-  template:
+  ansible.builtin.template:
     src: application.yml.j2
     dest: "{{ kafka_ui_config_dir }}/application.yml"
     owner: "{{ kafka_ui_user }}"
@@ -9,7 +9,7 @@
   notify: Restart kafka-ui
 
 - name: Enable and start kafka-ui service
-  systemd:
+  ansible.builtin.systemd:
     name: kafka-ui
-    enabled: yes
+    enabled: true
     state: started
